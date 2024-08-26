@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 # Create your tests here.
+#7th
 class HomepageViewTestCase(TestCase):
     def test_homepage_renders_correctly(self):
         response = self.client.get(reverse('homepage'))
