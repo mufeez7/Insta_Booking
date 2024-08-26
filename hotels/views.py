@@ -179,6 +179,7 @@ def predict_recommendation(location, room_type, price_per_night, rating):
     recommended_hotel = le_hotel_name.inverse_transform([hotel_encoded])[0]
     return recommended_hotel
 
+#room recommend
 def recommend_room(request):
     recommendation = None
     hotel_details = None
