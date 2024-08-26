@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Homepage</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 10px 20px;
+            color: white;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-link {
+            padding: 10px;
+            color: white;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .nav-link:hover {
+            background-color: #0056b3;
+        }
+        .user-greeting {
+            font-size: 18px;
+        }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px;
+        }
+        .image-gallery img {
+            max-width: 300px;
+            max-height: 200px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 0.5px solid ;
+        }
+        .im {
+            -webkit-transition-property: all;
+            -webkit-transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease;
+        }
+        .im:hover {
+            transform: scale(1.1);
+        }
+        .container1 {
+            justify: center;
+            padding: 20px;
+        }
+        .intro {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            text-align: center;
+        }     
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>InstaBooking</h1>
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+                <a href="{% url 'show_bookings' %}" class="nav-link">Show Bookings</a>
+                <a href="{% url 'my_bookings' %}" class="nav-link">My Bookings</a>
+                <a href="{% url 'index' %}" class="nav-link">Chatroom</a>
+            {% endif %}
+            <a href="{% url 'hotel_list' %}" class="nav-link">Hotel Listings</a>
+            <a href="{% url 'recommend_room' %}" class="nav-link">Recommendation</a>
+            <a href="{% url 'signup' %}" class="nav-link">Sign Up</a>
+            <a href="{% url 'login' %}" class="nav-link">Login</a>
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link" style="background-color: #dc3545;">Logout</button>
+                </form>
+                <div class="user-greeting">Hello, {{ user.username }}!</div>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container1">
+    <div class="image-gallery">
+        <img class='im' src="{% static 'miami_stock.jpg' %}" alt="Hotel Image 1">
+        <img class='im' src="{% static 'st-regis-hotel-nyc-usa-2A109CP.jpg' %}" alt="Hotel Image 2">
+        <img class='im' src="{% static 'the-st-regis-aspen-resort.jpg' %}" alt="Hotel Image 3">
+        <img class='im' src="{% static 'metropol.jpg' %}" alt="Hotel Image 4">
+    </div> 
+    <br>
+    <p class='intro'><strong>Welcome to InstaBooking!</strong>
+        Discover the easiest way to find and book the perfect hotel for your stay.
+         Whether you’re planning a relaxing getaway or a business trip, 
+         InstaBooking offers a seamless experience with a diverse range of hotels to suit every budget and preference. 
+         Explore detailed listings, check availability in real-time, and secure your reservation with just a few clicks.
+          Your next adventure starts here!</p>
+</div>
+</body>
+</html>

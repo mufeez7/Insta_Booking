@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rooms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .hotel-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+        .hotel-info {
+            flex: 1;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .back-link {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+        .reserve-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .reserve-button:hover {
+            background-color: #0056b3;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+        .pagination .current {
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #e9ecef;
+            color: #007bff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Rooms</h1>
+        <p><strong>{{location}}: </strong>{{room_count}} Rooms found.</p>
+        <ul>
+            {% for room in page_obj %}
+                <li>
+                    {% if room.hotel.image %}
+                        <img src="{{ room.hotel.image.url }}" alt="{{ room.hotel.name }}" class="hotel-image">
+                    {% endif %}
+                    <div class="hotel-info">
+                        {{ room.hotel.name }} - {{ room.room_type }} - ${{ room.price_per_night }} per night
+                    </div>
+                    <a href="{% url 'reserve_confirmation' room.id %}"class="reserve-button">Reserve</a>
+                </li>
+            {% empty %}
+                <li>No rooms available for the selected criteria.</li>
+            {% endfor %}
+        </ul>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <div class="button-container">
+        <a href="{% url 'show_bookings' %}" class="back-link">Back to Search</a>
+    </div>
+</body>
+</html>

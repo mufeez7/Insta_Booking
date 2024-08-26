@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hotel Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .heading-container {
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+            margin: 0;
+        }
+        .back-link {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .hotel-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+        .hotel-info {
+            flex: 1;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+        .pagination .current {
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #e9ecef;
+            color: #007bff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="heading-container">
+                <h1>Hotel Listings</h1>
+                <p><strong>Hotels: </strong>{{hotel_count}} found.</p>
+            </div>
+        </div>
+        <ul>
+            {% for hotel in page_obj %}
+                <li>
+                    {% if hotel.image %}
+                        <img src="{{ hotel.image.url }}" alt="{{ hotel.name }}" class="hotel-image">
+                    {% endif %}
+                    <div class="hotel-info">
+                        <a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a> - {{ hotel.location }} 
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        <div class='homeback'>
+            <a href="{% url 'homepage' %}" class="back-link">Back to Homepage</a>
+        </div>
+    </div>
+</body>
+</html>

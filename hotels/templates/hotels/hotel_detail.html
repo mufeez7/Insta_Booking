@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hotel.name }} - Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        h1 {
+            color: #007bff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #007bff;
+            font-size: 2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+        }
+        .back-link {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            text-align: center;
+            color: white;
+            background-color: #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'hotel_list' %}" class="back-link">Back to Listings</a>
+        <h1>{{ hotel.name }}</h1>
+        <p>{{ hotel.description }}</p>
+        <p><strong>Amenities: </strong>{{hotel.amenities}}</p>
+        <h2>Rooms</h2>
+        <ul>
+            {% for room in rooms %}
+                <li>{{ room.room_type }} - ${{ room.price_per_night }} per night</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+    <title>My Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .booking-info {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+        img {
+            max-width: 180px;
+            max-height: 120px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .back-link, .delete-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .back-link:hover, .delete-button:hover {
+            background-color: #0056b3;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .pagination a {
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+        .pagination .current {
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #e9ecef;
+            color: #007bff;
+            border-radius: 5px;
+        }
+        .hotel-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #343a40;
+        }
+        .room-details {
+            font-size: 16px;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Bookings</h1>
+        <p><strong>Bookings: </strong>{{booking_count}} found.</p>
+        <ul>
+            {% for booking in page_obj %}
+                <li>
+                    <img src="{{ booking.room.hotel.image.url }}" alt="{{ booking.room.hotel.name }}">
+                    <div class="booking-info">
+                        <div class="hotel-name">{{ booking.room.hotel.name }}</div>
+                        <div class="room-details"><strong>Room Type:</strong> {{ booking.room.room_type }}</div>
+                        <div class="room-details"><strong>Check-in:</strong> {{ booking.check_in }}</div>
+                        <div class="room-details"><strong>Check-out:</strong> {{ booking.check_out }}</div>
+                        <form action="{% url 'delete_booking' booking.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-button">Delete Booking</button>
+                        </form>
+                    </div>
+                </li>
+            {% empty %}
+                <li>You have no bookings.</li>
+            {% endfor %}
+        </ul>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <div class="button-container">
+        <a href="{% url 'homepage' %}" class="back-link">Back to Homepage</a>
+    </div>
+</body>
+</html>
