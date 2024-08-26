@@ -1,0 +1,432 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - yo
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - sayonara
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - i approve
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - NO
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - can you solve this captcha for me
+
+- intent: check_availability
+  examples: |
+    - Check if there are rooms available at [Krabi La Playa Resort](hotel_name)
+    - Check if there are rooms available at [KC Beach Club & Pool Villas](hotel_name)
+    - Are there any rooms free at [Abloom Exclusive Serviced Apartments](hotel_name)?
+    - Can you check availability at [Waterfront Suites Phuket by Centara](hotel_name) for me?
+
+- intent: cancel_booking
+  examples: |
+    - I want to cancel my booking at [Krabi La Playa Resort](hotel_name)
+    - Please cancel my reservation at [KC Beach Club & Pool Villas](hotel_name)
+    - I need to cancel a room booking at [Explorar Koh Samui - Adults Only Resort and Spa](hotel_name)
+
+- intent: inquire_time
+  examples: |
+    - what time is it?
+    - what time is it in [Amsterdam](place)?
+    - what time is it in [London](place)?
+    - tell me the time in [Lisbon](place)
+    - what is the current time in [Berlin](place)
+    - what time is it in [amsterdam](place)[amsterdam](place)
+
+- lookup: place
+  examples: |
+    - brussels
+    - zagreb
+    - london
+    - lisbon
+    - amsterdam
+    - seattle
+
+- lookup: hotel_name
+  examples: |
+    - Krabi La Playa Resort - SHA Plus
+    - KC Beach Club & Pool Villas
+    - Rawai VIP Villas & Kids Park
+    - FuramaXclusive Sathorn, Bangkok
+    - Bo Phut Resort and Spa - SHA Plus
+    - Abloom Exclusive Serviced Apartments
+    - Bandara Suites Silom, Bangkok - SHA Extra Plus
+    - Bhukitta Boutique Hotel
+    - Hotel Verdigris
+    - Combo Beach Hotel Samui
+    - Spacious apartment with Ocean view in Panwa
+    - Explorar Koh Samui - Adults Only Resort and Spa
+    - Waterfront Suites Phuket by Centara
+    - Art Mai Gallery Nimman Hotel Chiang Mai - SHA Plus
+    - The Leaf Oceanside by Katathani - SHA Extra Plus
+    - Twin Lotus Resort and Spa - SHA Plus - Adult Only Hotel
+    - Siam Subway Hostel and Café
+    - The Blanket Hotel Phuket Town - SHA Plus
+    - The Siamese Hotel
+    - Paradise Resort Phi Phi-SHA Plus
+    - S3 Siam Bangkok Hotel
+    - Haad Salad Villa
+    - Maven Stylish Hotel Hua Hin
+    - Sawasdee House
+    - Casa De Mar - SHA Plus
+    - Krabi La Playa Resort - SHA Plus
+    - Luxury Apartment at Title Residencies Naiyang Beach
+    - I Pavilion Hotel Phuket - SHA Extra Plus
+    - Chura Samui - SHA Plus
+    - Sabaii Bay Resort
+    - Assava Dive Resort - SHA Plus
+    - Moondance Magic View Bungalow
+    - Buri Sriping Riverside Resort & Spa - SHA Extra Plus
+    - Armoni Patong Beach Hotel
+    - Tharaburi Resort
+    - The Top Patong Resort
+    - Patong Lodge Hotel - SHA Extra Plus
+    - Phi Phi Bayview Resort
+    - V20 Boutique Jacuzzi Hotel - SHA Extra Plus
+    - Anantasila Villa by the sea, Hua Hin - SHA Extra Plus
+    - U Sabai Living Hotel - SHA Certified
+    - Majestic Suites Hotel
+    - Muan Hotel
+    - Sabai Sabana - formerly Sabai Wing
+    - Marina House MUAYTHAI Ta-iad Phuket
+    - Koh Tao Cabana
+    - Arize Hotel Sukhumvit
+    - AARIHA SUITES
+    - AARIHA SUITES
+    - Grace Hotel
+    - Baan Hin Sai Resort & Spa - SHA Extra Plus
+    - Papillon Resort
+    - Lanna Palace 2004
+    - Santhiya Koh Yao Yai Resort & Spa
+    - SR Sea View Apartments
+    - Grand Orlov
+    - Samed Cliff Resort
+    - Lanta Amara Resort
+    - Nasa Bangkok - SHA PLUS Certified
+    - Nature Beach Resort, Koh Lanta
+    - Blue View House Phi Phi
+    - Villa Navin
+    - The Malika Hotel - SHA Extra Plus
+    - Forra Dive Resort Pattaya Beach
+    - Chanchalay Hip Hostel SHA Extra Plus
+    - The Ozone Krabi Condotel
+    - Wixky hotel
+    - Andaman Pearl Resort
+    - Cliff Cottage
+    - Phuket Beach Glamping
+    - Bansaeo Garden and Resort
+    - Elixir Koh Yao Yai - SHA Plus
+    - Momento Resort
+    - Sun Inn
+    - The Patong Center Hotel-SHA Certified
+    - The Chanthong Residence and Hotel Pattaya
+    - Koh Phaluai Beach Bangalow
+    - Krabi River Hotel
+    - Atlantis Condo Resort jomtien
+    - The Hideaway, Koh Lipe
+    - Baan Chaylay Resort Karon
+    - Cocoo-n Beach Hotel
+    - Chom Suan Homestay
+    - Hotel Scarlett
+    - Phranang Place- SHA Extra
+    - Tropical Garden Bungalow
+    - Easy Life Bungalows
+    - White Orchid Inn II
+    - Rawai Whale Resort
+    - NN Apartment
+    - 7 Days Premium Hotel Pattaya
+    - Grand Mansion Hotel
+    - VX The Fifty
+    - Baan Suan Kayoo 2, ??????????????????? ??????????? ????????
+    - Phi Phi Sand Sea View Resort
+    - Pailin Pool Villa, Hua Hin
+    - Silver Resortel
+    - Veranda Lodge
+    - Golden Nest Hotel Suvarnabhumi
+    - JJ Beach Resort & JJ Seafood
+    - 64House
+    - Nam Talay Resort
+    - Baan Suan Rim Klong
+    - O'nya Phuket Hotel - SHA Extra Plus
+    - The Loft Panwa Resort
+    - Sugar Marina Resort - ART - Karon Beach - SHA Plus
+    - Park 38 Hotel - SHA Plus
+    - Erawan House
+    - Rocco Hua Hin Beach Seaview
+    - Has Pattaya
+    - Madina Rayong Hotel
+    - Saisawan Beach Resort
+    - ????????????
+    - Jaroonwej Bangsaen
+    - P'Un House
+    - Srisomthai Hotel
+    - Andaman Bay Bungalow
+    - President Hotel Udonthani
+    - ?????????????????
+    - Phalarn Inn Resort
+    - Poseidon Bungalows
+    - 65 hostel chiangmai
+    - 65 hostel chiangmai
+    - Diary Suite
+    - Shanti Lodge Phuket
+    - ????????????? ? ????????(Once upon a time)
+    - Rasta view Bangalows
+    - Garden Corner Resort & Hotel
+    - D5 Hotel ???? ?????????
+    - U Hostel Haad Rin
+    - No. 8 Pai
+    - Norn Talay Surin Beach Phuket
+    - Oriole Residence - Suvarnabhumi
+    - ?????????????? ???????????? ???? Impact
+    - Holiday Style Ao Nang Beach Resort, Krabi
+    - Escape Beach Resort - SHA Extra Plus Certified
+    - Avani Plus Riverside Bangkok Hotel
+    - VELA Dhi Udon Thani
+    - Anahata Resort - SHA Plus
+    - Outrigger Surin Beach Resort - SHA Extra Plus
+    - Yao Yai Beach Resort
+    - The Peri Hotel Khao Yai
+    - Khao Sok Jungle Huts Resort
+    - The Sunnery Ville
+    - Anana Ecological Resort Krabi-SHA Extra Plus
+    - Hotel Ibis Samui Bophut
+    - VST Residence -SHA PLUS Certified
+    - VST Residence -SHA PLUS Certified
+    - Na Siri Lake View
+    - Hivetel
+    - Hotel Tide Phuket Beach front - SHA Plus
+    - Amatara Welleisure Resort - SHA Extra Plus
+    - Style Paidoi Resort
+    - The Heritage Chiang Rai Hotel and Convention - SHA Extra Plus
+    - Koh Tao Relax Freedom Beach Resort
+    - @T Boutique Hotel
+    - Rayong Marriott Resort & Spa
+    - Tiki Beach Koh Phangan
+    - Coconut Beach Bungalows
+    - Venice Krabi Villa Resort- SHA Plus
+    - O2 Hotel Lopburi
+    - Hotel Agnes
+    - The Dorm Hostel
+    - Somerset Pattaya - SHA Plus
+    - Inpawa Hotel
+    - Chiangkhong Teak Garden Riverfront Onsen Hotel- SHA Extra Plus
+    - Island Escape by Burasari - SHA Extra Plus
+    - ???????????????? ???????? Double D hotel
+    - Tawaravadee Resort, BW Signature Collection
+    - Lub d Phuket Patong
+    - The Waters Khao Lak by Katathani - SHA Extra Plus
+    - VILLA DEVA RESORT AND HOTEL
+    - Panviman Chiang Mai Spa Resort
+    - Napa Hotel Ratchaburi
+    - Centre Point Hotel Terminal21 Korat
+    - Fortune River View Hotel Nakhon Phanom
+    - Fortune Riverview Hotel Chiang Khong
+    - Holiday Inn Resort Samui Bophut Beach, an IHG Hotel
+    - Outrigger Khao Lak Beach Resort - SHA Extra Plus
+    - Outrigger Koh Samui Beach Resort - SHA Extra Plus
+    - Katiliya Mountain Resort And Spa
+    - Grand Inter Hotel
+    - JonoX Phuket Karon Hotel
+    - Scandia Beach Hotel
+    - Come Moon Loft Hotel
+    - Lady Naya Villas - SHA Extra Plus
+    - Fortune View Khong Hotel Nakhon Phanom
+    - Dusit Thani Krabi Beach Resort - SHA Extra Plus
+    - Centra by Centara Hotel Mae Sot
+    - The Oceanic Sportel - SHA Extra Plus
+    - Novotel Marina Sriracha & Koh Si Chang
+    - ????????3???????????????????????
+    - Riverfront Hotel Mukdahan
+    - The Journey Hotel Bangna
+    - X10 Khaolak Resort SHA Plus
+    - Namaka Resort Kamala - SHA Extra Plus
+    - SKYVIEW Hotel Bangkok - SHA Extra Plus
+    - Diamond Resort Phuket - SHA
+    - Blue Sky Residence Airport
+    - Sukantara Cascade Resort and Spa
+    - Huernnana Boutique Hotel
+    - Amari Phuket
+    - Paripas Patong Resort - SHA Extra Plus
+    - The Canal 304
+    - Mövenpick Resort Khao Yai
+    - Phuphavaree by Tahug Sai Yok
+    - La Miniera Pool Villas Pattaya - SHA Plus
+    - Phu Pha Phung Resort
+    - Limon Villa Khao Yai by Tolani
+    - Novotel Bangkok IMPACT
+    - Samui Resotel Beach Resort - SHA extra plus
+    - Anchalee Resort
+    - Regent Lodge Lampang
+    - Atta Lakeside Resort Suite - SHA Plus Certified
+    - Kimpton Maa-Lai Bangkok, an IHG Hotel
+    - Eastin Thana City Golf Resort Bangkok
+    - Sukhothai Heritage Resort - SHA PLUS
+    - El Matcha Lanta Resort
+    - Koh Yao Yai Village - SHA Extra Plus
+    - Pen Ta Hug Hotel
+    - Panviman Resort Koh Phangan - SHA Extra Plus
+    - The X10 Nordic Tent and Glamping Pool Villa Khaoyai ??????? - SHA Certified
+    - THE WOOD
+    - Karon Phunaka Resort
+    - The Sun resort Ratchaburi
+    - Bella Villa Cabana
+    - Dolphin Bay Resort SHA-EXTRA PLUS HOTEL
+    - KT Knight Hotel
+    - Raya Buri Resort Kanchanaburi
+    - Destination Resorts Phuket Karon Beach - SHA Extra Plus
+    - Pamookkoo
+    - Taris Art Hotel Phrae
+    - Happy Home
+    - Novotel Bangkok Suvarnabhumi Airport
+    - Pullman Pattaya Hotel G
+    - INBOX Living Rimkhong
+    - ISTY Hotel -SHA Extra Plus
+    - ARAYA HOTEL
+    - Glai Gan Place Hotel
+    - Centara Hotel & Convention Centre Udon Thani
+    - Splash Beach Resort, Maikhao Phuket - SHA Extra Plus
+    - BN Resort
+    - Khong Chiam Orchid Riverside Resort
+    - BlueSotel SMART Krabi Aonang Beach - Adults only - SHA Extra Plus
+    - Baan Sabaijai Resort & Rehab
+    - The Gems Mining Pool Villas Pattaya - SHA Extra Plus
+    - Kalima Resort and Villas Khao Lak - SHA EXTRA PLUS
+    - The Gems Mining Pool Villas Pattaya - SHA Extra Plus
+    - Kalima Resort and Villas Khao Lak - SHA EXTRA PLUS
+    - Rnana Grand
+    - Taakradan Valley Resort ????????????????? ???????
+    - Jomkitti Boutique Hotel
+    - Fortune D Hotel Loei
+    - Pongsin Resort
+    - Hotel de l'amour SHA PLUS
+    - The Harmony Ville
+    - T2 Adira Pattaya
+    - Centara Korat
+    - Koh Ma Beach Resort - SHA Extra Plus
+    - The Ring Border
+    - ON Thapae Chiangmai
+    - Feungfah Litz
+    - Holiday Inn Express Phuket Patong Beach Central, an IHG Hotel - SHA Plus
+    - Chatrium Golf Resort Soi Dao Chanthaburi
+    - Baan Nern Khao Resort Pattaya
+    - Novotel Bangkok Future Park Rangsit
+    - ???????? ??????? (StockHome Khao Yai)
+    - RED PEARL BEACH RESORT
+    - Thong Nai Pan Beach Residence
+    - Mamaungpaa Hill resort
+    - Mela Garden Retreat Cottage
+    - Mookies Bungalows
+    - The Garden 304
+    - Nautilus Right on the Beach - Adult Only - SHA Extra Plus
+    - Emporium Suites by Chatrium
+    - Sarikantang Resort & Spa, Koh Phangan
+    - Siam View Hotel and Residence
+    - Ray Hotel Buriram
+    - Wind Beach Resort
+    - Centara Grand Mirage Beach Resort Pattaya - SHA Extra Plus
+    - Hilton Hua Hin Resort & Spa
+    - Citygate Kamala Resort and Residence
+    - Sun Moon Hotel
+    - Chill House ??????????
+    - JK LIVING Hotel And Service Apartment
+    - Legendha Sukhothai Hotel - SHA certified
+    - Tour De Phuket Hotel - SHA Plus
+    - Phu Morinn Cafe&Camping
+    - Sindhorn Midtown Hotel Bangkok, Vignette Collection - an IHG Hotel
+    - Chao Phraya Home
+    - Tanouy Garden
+    - Khao Sok River & Jungle Resort
+    - Suansin Lanna Hotel
+    - Ratana Hotel Rassada - SHA Extra Plus
+    - De Chai the Deco Chiang Mai - SHA Plus
+    - Koh Tao Heritage
+    - BEARS DEN HOTEL PATTAYA
+    - Pru Valley Thaley Tai Resort
+    - PhiPhi Andaman Resort
+    - Avani Plus Khao Lak Resort
+    - TUI BLUE Khao Lak Resort - SHA Plus
+    - M Village Hostel
