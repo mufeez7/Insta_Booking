@@ -24,11 +24,27 @@
             background: #f9f9f9;
         }
         .chat-input {
-            width: calc(100% - 22px);
+            width: calc(100% - 72px);
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-top: 10px;
+            display: inline-block;
+        }
+        .send-button {
+            width: 60px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .send-button:hover {
+            background-color: #0056b3;
         }
         .message {
             margin-bottom: 10px;
@@ -74,22 +90,32 @@
     <div class="chat-container">
         <div class="chat-box" id="chat-box"></div>
         <input type="text" class="chat-input" id="chat-input" placeholder="Type a message...">
+        <button class="send-button" id="send-button">Send</button>
     </div>
     <script>
         const chatInput = document.getElementById('chat-input');
         const chatBox = document.getElementById('chat-box');
+        const sendButton = document.getElementById('send-button');
         const userId = "{{ user_id }}";
         
         chatInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                const userMessage = chatInput.value;
-                if (userMessage.trim() !== '') {
-                    appendMessage('user', userMessage);
-                    chatInput.value = '';
-                    sendMessageToBot(userMessage);
-                }
+                sendMessage();
             }
         });
+
+        sendButton.addEventListener('click', function() {
+            sendMessage();
+        });
+
+        function sendMessage() {
+            const userMessage = chatInput.value;
+            if (userMessage.trim() !== '') {
+                appendMessage('user', userMessage);
+                chatInput.value = '';
+                sendMessageToBot(userMessage);
+            }
+        }
 
         function appendMessage(sender, message) {
             const messageElement = document.createElement('div');
