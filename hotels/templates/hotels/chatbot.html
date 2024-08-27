@@ -23,16 +23,17 @@
             padding: 10px;
             background: #f9f9f9;
         }
+        .chat-input-container {
+            display: flex;
+            margin-top: 10px;
+        }
         .chat-input {
-            width: calc(100% - 72px);
+            flex: 1;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            margin-top: 10px;
-            display: inline-block;
         }
         .send-button {
-            width: 60px;
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -40,8 +41,7 @@
             color: white;
             cursor: pointer;
             margin-left: 10px;
-            display: inline-block;
-            vertical-align: top;
+            white-space: nowrap;
         }
         .send-button:hover {
             background-color: #0056b3;
@@ -89,8 +89,10 @@
 <body>
     <div class="chat-container">
         <div class="chat-box" id="chat-box"></div>
-        <input type="text" class="chat-input" id="chat-input" placeholder="Type a message...">
-        <button class="send-button" id="send-button">Send</button>
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chat-input" placeholder="Type a message...">
+            <button class="send-button" id="send-button">Send</button>
+        </div>
     </div>
     <script>
         const chatInput = document.getElementById('chat-input');
