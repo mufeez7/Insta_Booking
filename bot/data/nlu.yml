@@ -106,12 +106,20 @@ nlu:
 
   - intent: cancel_booking
     examples: |
+      - I want to cancel a booking
       - I want to cancel my booking at [Krabi La Playa Resort](hotel_name)
       - Cancel  all my bookings at [Waterfront Suites Phuket by Centara](hotel_name)
       - Please cancel my reservation at [KC Beach Club & Pool Villas](hotel_name)
       - I need to cancel a room booking at [Explorar Koh Samui - Adults Only Resort and Spa](hotel_name)
       - Can you help me cancel my stay at [The Siamese Hotel](hotel__name
       - I’d like to cancel my stay at [Haad Salad Villa](hotel_name)
+      - Booking I would like to cancel
+
+  - intent: confirm_booking_id
+    examples: |
+      - Booking at [1](booking_id)
+      - At [2](booking_id)
+      - Cancel at [3](booking_id)
 
   - intent: inquire_time
     examples: |

@@ -1,57 +1,61 @@
 version: "3.1"
 
 stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - story: user wants to check availability
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: check_availability
+        entities:
+          - hotel_name: KC Beach Club & Pool Villas
+      - action: action_check_room_availability
 
-- story: user wants to check availability
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: check_availability
-    entities:
-    - hotel_name: KC Beach Club & Pool Villas
-  - action: action_check_room_availability
+  - story: interactive_story_1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: inquire_time
+        entities:
+          - place: amsterdam
+      - action: action_tell_time
 
-- story: interactive_story_1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: inquire_time
-    entities:
-    - place: amsterdam
-  - action: action_tell_time
-
-- story: user wants to cancel a booking
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: cancel_booking
-    entities:
-    - hotel_name: KC Beach Club & Pool Villas
-  - action: action_cancel_booking
+  - story: user wants to cancel a booking
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: cancel_booking
+        entities:
+          - hotel_name: KC Beach Club & Pool Villas
+      - action: action_cancel_booking
+      - intent: confirm_booking_id
+        entities:
+          - booking_id: 1
+      - action: utter_bookingwait
+      - action: action_id_cancel

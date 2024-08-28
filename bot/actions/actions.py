@@ -116,6 +116,7 @@ class ActionCancelBooking(Action):
         hotel_name = tracker.get_slot("hotel_name")
         user_id = tracker.sender_id  
         print(hotel_name, ' ', user_id)
+
         if not hotel_name:
             dispatcher.utter_message(text="Please specify the hotel name for which you want to cancel the booking.")
             return []
@@ -123,13 +124,46 @@ class ActionCancelBooking(Action):
         try:
             bookings = Booking.objects.filter(user_id=user_id)  
             
-            if bookings.exists():
-                bookings.delete()  
-                dispatcher.utter_message(text=f"Your booking(s) at {hotel_name} have been successfully canceled.")
+            if bookings.exists():  
+
+                booking_options = []
+
+                for booking in bookings:
+                    booking_options.append(f"Booking ID: {booking.id}, Hotel: {booking.room.hotel.name}")
+
+                booking_list_message = "\n".join(booking_options)
+                dispatcher.utter_message(text=f"You have the following bookings:\n{booking_list_message}\nPlease specify the Booking ID of the one you want to cancel.")
+
             else:
                 dispatcher.utter_message(text=f"No booking found for {hotel_name} under your name.")
-        
+
         except Booking.DoesNotExist:
             dispatcher.utter_message(text=f"Hotel {hotel_name} not found.")
         
+        return []
+    
+class ActionIDCancel(Action):
+    def name(self) -> Text:
+        return "action_id_cancel"
+
+    def run(self, dispatcher: CollectingDispatcher,
+                  tracker: Tracker,
+                  domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        booking_id = tracker.get_slot("booking_id")
+        user_id = tracker.sender_id
+
+        if not booking_id:
+            dispatcher.utter_message(text="Please provide the Booking ID you want to cancel.")
+            return []
+
+        try:
+            booking = Booking.objects.get(id=booking_id, user_id=user_id)
+            booking.delete()
+
+            dispatcher.utter_message(text=f"Your booking with ID {booking_id} has been successfully canceled.")
+
+        except Booking.DoesNotExist:
+            dispatcher.utter_message(text=f"No booking found with ID {booking_id} under your account.")
+
         return []
