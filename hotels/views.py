@@ -92,7 +92,8 @@ def show_bookings(request):
                 temp_avail = True
 
                 for booking in bookings:
-                    if not (check_out_date <= booking.check_in or check_in_date >= booking.check_out):
+                    #if not (check_out_date <= booking.check_in or check_in_date >= booking.check_out):
+                    if not(check_in_date >= booking.check_out):
                         temp_avail = False
                         break
                     if temp_avail:
@@ -157,6 +158,8 @@ def delete_booking(request, booking_id):
     
     if request.method == "POST":
 
+        booking.room.availability = True
+        booking.room.save()
         booking.delete()
         return redirect('my_bookings') 
     
@@ -202,7 +205,7 @@ def recommend_room(request):
 
 def index(request):
     user_id = request.user.id if request.user.is_authenticated else None
-    
+
     return render(request, "hotels/chatbot.html", {
         'user': request.user,
         'user_id': user_id

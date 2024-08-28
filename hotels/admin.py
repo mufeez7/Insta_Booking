@@ -5,9 +5,11 @@ from .models import Hotel, Room, Booking
 
 
 class HotelAdmin(admin.ModelAdmin):
-    # Add the search functionality
     search_fields = ['name']
 
+class RoomAdmin(admin.ModelAdmin):
+    search_fields = ['hotel__name']
+
 admin.site.register(Hotel, HotelAdmin)
-admin.site.register(Room)
+admin.site.register(Room, RoomAdmin)
 admin.site.register(Booking)

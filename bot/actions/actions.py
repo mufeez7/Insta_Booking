@@ -159,8 +159,10 @@ class ActionIDCancel(Action):
 
         try:
             booking = Booking.objects.get(id=booking_id, user_id=user_id)
+            booking.room.availability = True
+            booking.room.save()
             booking.delete()
-
+        
             dispatcher.utter_message(text=f"Your booking with ID {booking_id} has been successfully canceled.")
 
         except Booking.DoesNotExist:
